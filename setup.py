@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from distutils.core import setup
 
 from spotify import __version__
@@ -6,6 +7,7 @@ setup(
     name='pycri-spotify',
     version=__version__,
     description='Spotify plugin for pycri',
+    long_description=open('README.md').read(),
     author='Marcus Carlsson',
     author_email='carlsson.marcus@gmail.com',
     url='https://github.com/xintron/pycri-spotify',
