@@ -29,13 +29,17 @@ THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 """
-import re, urllib2, time
+import re
+import urllib2
+import time
 import json
 
-from pycri.plugins import Plugin
+from pycri.plugins import IRCObject
+from pycri.globals import g
 
-class Spotify(Plugin):
+class Spotify(IRCObject):
 
+    logger = g.getLogger(__name__)
     apiurl = "http://ws.spotify.com/lookup/"
     apiversion = '1'
 
@@ -52,6 +56,7 @@ class Spotify(Plugin):
 
         type = m.group(2).lower()
         uri = 'spotify:{}:{}'.format(type, m.group(3))
+        self.logger.debug('Fetching spotify data for: {}'.format(uri))
         data = json.loads(self.call(uri))
 
         ret = self.format_response(data, type)
@@ -82,8 +87,6 @@ class Spotify(Plugin):
 
     def match_uri(self, msg):
        return self.regexp.search(msg) 
-        
-        
 
     def call(self, uri):
         url = ''.join([self.apiurl, self.apiversion, '/?uri=', uri])

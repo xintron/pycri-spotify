@@ -1,23 +1,25 @@
 # -*- coding: utf-8 -*-
-from setuptools import setup
+"""
+pycri-spotify
+-------------
 
-from spotify import __version__
+Plugin for fetching data from spotify.
+"""
+from setuptools import setup
 
 setup(
     name='pycri-spotify',
-    version=__version__,
+    version='0.2.0',
     description='Spotify plugin for pycri',
-    long_description=open('README.md').read(),
+    long_description=__doc__,
     author='Marcus Carlsson',
     author_email='carlsson.marcus@gmail.com',
     url='https://github.com/xintron/pycri-spotify',
-    packages=['spotify'],
-    provides=[
-        'pycri_spotify',
-    ],
-    install_requires=['pycri>=0.3'],
+    packages=['pycri_spotify'],
+    provides='pycri_spotify',
+    install_requires=['pycri'],
     classifiers=[
-        'Development Status :: 2 - Pre-Alpha',
+        'Development Status :: 3 - Alpha',
         'Environment :: Console',
         'Framework :: Twisted',
         'Intended Audience :: Developers',

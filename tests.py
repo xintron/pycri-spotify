@@ -1,11 +1,16 @@
 # -*- coding: utf-8 -*-
-import unittest, json
+import unittest
+import json
 
-import spotify
+from pycri import Pycri
+app = Pycri(__name__)
+
+from pycri_spotify import Spotify
 
 class SpotifyTestCase(unittest.TestCase):
+
     def setUp(self):
-        self.spotify = spotify.Spotify()
+        self.spotify = Spotify()
 
     def test_call(self):
         data = self.spotify.call('spotify:track:4saID1prQzHStGA6Sa0WSN')
@@ -44,3 +49,5 @@ class SpotifyTestCase(unittest.TestCase):
 
         self.assertEquals(u'» Babian - Kärlek I Paket [Kärlek I Paket - Single] (03:38) » spotify:track:72tmEm4EzNBf38Rv883Mth', resp)
 
+if __name__ == '__main__':
+    unittest.main()
