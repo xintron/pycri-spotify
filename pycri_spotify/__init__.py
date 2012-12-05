@@ -67,17 +67,18 @@ class Spotify(IRCObject):
     def format_response(self, data, type='track'):
 
         if type == 'artist':
-            return u"» {0} » {1}".format(data['artist']['name'], data['artist']['href'])
+            ret = u"» {0} » {1}".format(data['artist']['name'], data['artist']['href'])
         elif type == 'album':
-            return u"» {0} [{1}] » {2}".format(data['album']['artist'], data['album']['name'], data['album']['href'])
+            ret = u"» {0} [{1}] » {2}".format(data['album']['artist'], data['album']['name'], data['album']['href'])
         else:
-            return u"» {0} - {1} [{2}] ({3}) » {4}".format(
+            ret = u"» {0} - {1} [{2}] ({3}) » {4}".format(
                 data['track']['artists'][0]['name'],
                 data['track']['name'],
                 data['track']['album']['name'],
                 self.timeconversion(float(data['track']['length'])),
                 data['track']['href']
             )
+        return ret.encode('utf8')
 
     def timeconversion(self, seconds):
         format = '%H:%M:%S'
